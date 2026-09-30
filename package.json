@@ -1,0 +1,6 @@
+{
+  "name": "led-store",
+  "private": true,
+  "description": "Simple car LED store with Stripe Checkout, hosted on Vercel.",
+  "engines": { "node": ">=18" }
+}

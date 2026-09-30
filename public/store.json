@@ -1,0 +1,40 @@
+{
+  "_readme": "EDIT THIS FILE to change your store. Prices are in cents (2999 = $29.99). Leave a field empty (\"\") to hide it on the site.",
+  "brand": "",
+  "logoText": "LED Interior Kit",
+  "tagline": "",
+  "contactEmail": "",
+  "currency": "usd",
+  "shipping": {
+    "countries": ["US"],
+    "label": "Free shipping",
+    "priceCents": 0,
+    "note": ""
+  },
+  "returnsPolicy": "",
+  "product": {
+    "id": "led-kit",
+    "name": "4-Strip RGB LED Car Interior Lights",
+    "shortDescription": "Four RGB LED strips with 48 LEDs total. Control colors from your phone with the app or with the included remote. Powered by USB.",
+    "description": [
+      "Light up your car's interior with four RGB LED strips, 48 LEDs in total.",
+      "Change colors and effects from the smartphone app, or use the remote control. The kit plugs into a USB port for power."
+    ],
+    "features": [
+      "4 RGB LED strips, 48 LEDs total",
+      "Smart app control from your phone",
+      "Remote control included",
+      "USB powered"
+    ],
+    "image": "/images/product.jpg",
+    "imageAlt": "Car interior lit in red, purple and blue by four RGB LED strips, shown with the strips, USB control box and phone app",
+    "priceCents": 2999,
+    "optionName": "Bundle",
+    "variants": [
+      { "id": "kit1", "name": "1 Kit", "priceCents": 2999 },
+      { "id": "kit2", "name": "2 Kits (save $10)", "priceCents": 4999 },
+      { "id": "kit3", "name": "3 Kits (save $25)", "priceCents": 6499 }
+    ]
+  },
+  "faq": []
+}
