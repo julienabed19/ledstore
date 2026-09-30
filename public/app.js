@@ -12,7 +12,7 @@
 
   async function checkout(items, btn) {
     const msg = $('#msg') || $('#cartMsg');
-    const label = btn.textContent;
+    const label = btn.innerHTML;
     btn.disabled = true; btn.textContent = 'Loading…';
     if (msg) msg.textContent = '';
     try {
@@ -23,7 +23,7 @@
     } catch (e) {
       const m = btn.id === 'cartCheckout' ? $('#cartMsg') : $('#msg');
       if (m) m.textContent = e.message;
-      btn.disabled = false; btn.textContent = label;
+      btn.disabled = false; btn.innerHTML = label;
     }
   }
 
@@ -69,35 +69,68 @@
   }
 
   // ---------- product page ----------
+  const ICON = {
+    strip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="9" width="20" height="6" rx="2"/><path d="M6 12h.01M10 12h.01M14 12h.01M18 12h.01"/></svg>',
+    phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6" y="2" width="12" height="20" rx="3"/><circle cx="12" cy="11" r="3"/><path d="M11 18h2"/></svg>',
+    remote: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="3"/><circle cx="12" cy="7" r="1.5"/><path d="M10 12h.01M14 12h.01M10 15h.01M14 15h.01M10 18h.01M14 18h.01"/></svg>',
+    usb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v16M9 5l3-3 3 3M7 9v3l5 3M17 8v3l-5 3"/><circle cx="12" cy="20" r="2"/></svg>',
+  };
   function renderProduct() {
     const p = S.product;
     const root = $('#product'); if (!root) return;
     $('#pName').textContent = p.name;
-    $('#pShort').textContent = p.shortDescription;
-    const img = $('#pImg'); img.src = p.image; img.alt = p.imageAlt;
-    img.onerror = () => { img.replaceWith(el('div', { class: 'missing' }, 'Add your product photo as public/images/product.jpg')); };
-    const desc = $('#pDesc'); desc.innerHTML = ''; (p.description || []).forEach((t) => desc.appendChild(el('p', {}, t)));
-    const feats = $('#pFeatures'); feats.innerHTML = ''; (p.features || []).forEach((t) => feats.appendChild(el('li', {}, t)));
-    feats.hidden = !(p.features || []).length;
+    if ($('#pSub')) $('#pSub').textContent = p.subtitle || p.shortDescription;
 
+    // gallery
+    const img = $('#pImg'); const gal = p.gallery && p.gallery.length ? p.gallery : [{ src: p.image, alt: p.imageAlt }];
+    const show = (i) => { img.src = gal[i].src; img.alt = gal[i].alt; $('#thumbs').querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-current', String(i === j))); };
+    const th = $('#thumbs'); th.innerHTML = '';
+    if (gal.length > 1) gal.forEach((g, i) => { const b = el('button', { type: 'button', 'aria-label': 'Show image ' + (i + 1) }); b.appendChild(el('img', { src: g.src, alt: '', loading: 'lazy' })); b.onclick = () => show(i); th.appendChild(b); });
+    show(0);
+    if ($('#imgNote')) $('#imgNote').textContent = p.imageNote || '';
+
+    // chips + features + steps
+    const feats = (p.features || []).map((f) => (typeof f === 'string' ? { title: f } : f));
+    const chips = $('#chips'); chips.innerHTML = '';
+    feats.forEach((f) => { const c = el('span'); c.innerHTML = ICON[f.icon] || ''; c.appendChild(document.createTextNode(f.title)); chips.appendChild(c); });
+    const fg = $('#feats'); if (fg) { fg.innerHTML = ''; feats.forEach((f) => { const d = el('div', { class: 'feat' }); const ic = el('div', { class: 'ic' }); ic.innerHTML = ICON[f.icon] || ''; d.append(ic, el('h3', {}, f.title)); if (f.text) d.appendChild(el('p', {}, f.text)); fg.appendChild(d); }); }
+    const st = $('#steps'); if (st) { st.innerHTML = ''; (S.steps || []).forEach((x) => { const li = el('li'); const d = el('div'); d.append(el('h3', {}, x.title), el('p', {}, x.text)); li.appendChild(d); st.appendChild(li); }); $('#how').hidden = !(S.steps || []).length; }
+    const desc = $('#pDesc'); desc.innerHTML = ''; (p.description || []).forEach((t) => desc.appendChild(el('p', {}, t)));
+
+    // bundles
     let selected = p.variants[0].id;
     const vbox = $('#variants'); vbox.innerHTML = '';
-    $('#optLabel').textContent = p.optionName;
     $('#variantField').hidden = p.variants.length < 2;
-    const paint = () => {
-      vbox.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.id === selected)));
-      $('#pPrice').textContent = money.format(priceOf(variant(selected)) / 100);
-    };
-    p.variants.forEach((v) => { const b = el('button', { type: 'button', 'data-id': v.id, 'aria-pressed': 'false' }, v.name); b.onclick = () => { selected = v.id; paint(); }; vbox.appendChild(b); });
-    paint();
-
+    const kits = (v) => parseInt(v.name, 10) || 1;
     const qIn = $('#qty');
     const qty = () => Math.max(1, Math.min(10, parseInt(qIn.value, 10) || 1));
-    $('#qMinus').onclick = () => (qIn.value = Math.max(1, qty() - 1));
-    $('#qPlus').onclick = () => (qIn.value = Math.min(10, qty() + 1));
-    qIn.onchange = () => (qIn.value = qty());
+    const paint = () => {
+      vbox.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.id === selected)));
+      const v = variant(selected), total = money.format(priceOf(v) * qty() / 100);
+      $('#addLabel').textContent = 'Add to cart · ' + total;
+      if ($('#stickyPrice')) $('#stickyPrice').textContent = v.name + ' · ' + total;
+    };
+    p.variants.forEach((v) => {
+      const b = el('button', { type: 'button', class: 'bundle', 'data-id': v.id, 'aria-pressed': 'false' });
+      if (v.badge) b.appendChild(el('span', { class: 'badge' }, v.badge));
+      b.appendChild(el('span', { class: 'n' }, v.name));
+      if (v.detail) b.appendChild(el('span', { class: 'd' + (/save/i.test(v.detail) ? ' save' : '') }, v.detail));
+      b.appendChild(el('span', { class: 'p' }, money.format(priceOf(v) / 100)));
+      if (kits(v) > 1) b.appendChild(el('span', { class: 'each' }, money.format(priceOf(v) / kits(v) / 100) + ' per kit'));
+      b.onclick = () => { selected = v.id; paint(); };
+      vbox.appendChild(b);
+    });
+    $('#qMinus').onclick = () => { qIn.value = Math.max(1, qty() - 1); paint(); };
+    $('#qPlus').onclick = () => { qIn.value = Math.min(10, qty() + 1); paint(); };
+    qIn.onchange = () => { qIn.value = qty(); paint(); };
+    paint();
     $('#addBtn').onclick = () => addToCart(selected, qty());
+    if ($('#stickyAdd')) $('#stickyAdd').onclick = () => addToCart(selected, qty());
     $('#buyBtn').onclick = (e) => checkout([{ variantId: selected, qty: qty() }], e.currentTarget);
+
+    // sticky bar on phones once the main button scrolls away
+    const sticky = $('#sticky');
+    if (sticky && 'IntersectionObserver' in window) new IntersectionObserver(([en]) => { const on = !en.isIntersecting && en.boundingClientRect.top < 0; sticky.classList.toggle('on', on); sticky.setAttribute('aria-hidden', String(!on)); $('#stickyAdd').tabIndex = on ? 0 : -1; }).observe($('#addBtn'));
 
     // shipping + returns + faq + contact
     const sh = $('#shipText'); if (sh) sh.textContent = shipLine();

@@ -1,40 +1,47 @@
 {
   "_readme": "EDIT THIS FILE to change your store. Prices are in cents (2999 = $29.99). Leave a field empty (\"\") to hide it on the site.",
-  "brand": "",
-  "logoText": "LED Interior Kit",
-  "tagline": "",
+  "brand": "NeonDrive",
+  "tagline": "Light up every drive",
   "contactEmail": "",
   "currency": "usd",
-  "shipping": {
-    "countries": ["US"],
-    "label": "Free shipping",
-    "priceCents": 0,
-    "note": ""
-  },
+  "shipping": { "countries": ["US"], "label": "Free shipping", "priceCents": 0, "note": "" },
   "returnsPolicy": "",
   "product": {
     "id": "led-kit",
-    "name": "4-Strip RGB LED Car Interior Lights",
-    "shortDescription": "Four RGB LED strips with 48 LEDs total. Control colors from your phone with the app or with the included remote. Powered by USB.",
+    "name": "NeonDrive Interior LED Kit",
+    "subtitle": "4-strip RGB LED car interior lights",
+    "shortDescription": "Four RGB LED strips with 48 LEDs total. Pick your color from the phone app or the included remote. Plugs into USB.",
     "description": [
       "Light up your car's interior with four RGB LED strips, 48 LEDs in total.",
       "Change colors and effects from the smartphone app, or use the remote control. The kit plugs into a USB port for power."
     ],
     "features": [
-      "4 RGB LED strips, 48 LEDs total",
-      "Smart app control from your phone",
-      "Remote control included",
-      "USB powered"
+      { "icon": "strip", "title": "4 strips, 48 LEDs", "text": "Four RGB strips with 12 LEDs each." },
+      { "icon": "phone", "title": "App control", "text": "Pick colors and effects from your phone." },
+      { "icon": "remote", "title": "Remote included", "text": "Change colors without unlocking your phone." },
+      { "icon": "usb", "title": "USB powered", "text": "Plugs into a USB port for power." }
     ],
-    "image": "/images/product.jpg",
-    "imageAlt": "Car interior lit in red, purple and blue by four RGB LED strips, shown with the strips, USB control box and phone app",
+    "image": "/images/hero.jpg",
+    "imageAlt": "NeonDrive four-strip RGB LED kit glowing in rainbow colors next to a phone showing a color wheel",
+    "gallery": [
+      { "src": "/images/hero.jpg", "alt": "Four RGB LED strips, control box, USB plug and phone app" },
+      { "src": "/images/colors.jpg", "alt": "Four LED strips glowing red, pink, cyan and blue" },
+      { "src": "/images/strips.jpg", "alt": "Close-up of the four RGB LED strips" },
+      { "src": "/images/app.jpg", "alt": "Phone app with color wheel and color presets" }
+    ],
+    "imageNote": "Product illustrations.",
     "priceCents": 2999,
     "optionName": "Bundle",
     "variants": [
       { "id": "kit1", "name": "1 Kit", "priceCents": 2999 },
-      { "id": "kit2", "name": "2 Kits (save $10)", "priceCents": 4999 },
-      { "id": "kit3", "name": "3 Kits (save $25)", "priceCents": 6499 }
+      { "id": "kit2", "name": "2 Kits", "detail": "Save $10", "priceCents": 4999 },
+      { "id": "kit3", "name": "3 Kits", "detail": "Save $25", "badge": "Best value", "priceCents": 6499 }
     ]
   },
+  "steps": [
+    { "title": "Plug in", "text": "Connect the kit to a USB port." },
+    { "title": "Place the strips", "text": "Four strips to light up your interior." },
+    { "title": "Pick your color", "text": "Use the app or the remote." }
+  ],
   "faq": []
 }

@@ -3,50 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>4-Strip RGB LED Car Interior Lights with App & Remote</title>
-<meta name="description" content="Four RGB LED car interior light strips, 48 LEDs total, with smartphone app and remote control. USB powered. Bundles from $29.99 with free US shipping.">
+<title>NeonDrive | RGB LED Car Interior Lights with App & Remote</title>
+<meta name="description" content="NeonDrive 4-strip RGB LED car interior lights: 48 LEDs, phone app and remote control, USB powered. Bundles from $29.99 with free US shipping.">
 <link rel="canonical" href="/">
 <meta property="og:type" content="product">
-<meta property="og:title" content="4-Strip RGB LED Car Interior Lights with App & Remote">
-<meta property="og:description" content="Four RGB LED car interior light strips, 48 LEDs total, with smartphone app and remote control. USB powered. Bundles from $29.99 with free US shipping.">
-<meta property="og:image" content="/images/product.jpg">
-<meta name="theme-color" content="#0f1012">
+<meta property="og:site_name" content="NeonDrive">
+<meta property="og:title" content="NeonDrive | RGB LED Car Interior Lights with App & Remote">
+<meta property="og:description" content="NeonDrive 4-strip RGB LED car interior lights: 48 LEDs, phone app and remote control, USB powered. Bundles from $29.99 with free US shipping.">
+<meta property="og:image" content="/images/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#05060b">
 <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+<div class="announce">Free shipping on all US orders</div>
 <header class="top"><div class="wrap">
-  <a class="logo" href="/" data-brand>LED Interior Kit</a>
+  <a class="logo" href="/"><span>NeonDrive</span></a>
   <nav class="nav" aria-label="Main">
-    <a href="/#product">Shop</a><a href="/#faq" data-need="faq">FAQ</a><a href="/shipping-returns.html">Shipping &amp; returns</a><a href="/#contact" data-need="contactEmail">Contact</a>
-    <button class="cart-btn" type="button" aria-label="Open cart">Cart <span class="cart-count">0</span></button>
+    <a href="/#product">Shop</a><a href="/#features">Features</a><a href="/#how">How it works</a><a href="/#faq" data-need="faq">FAQ</a><a href="/#contact" data-need="contactEmail">Contact</a>
+    <button class="cart-btn" type="button" aria-label="Open cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><span class="cart-count">0</span></button>
   </nav>
 </div></header>
 <main>
 <section class="product" id="product" aria-labelledby="pName"><div class="wrap">
-  <div class="photo"><img id="pImg" src="/images/product.jpg" alt="" width="1320" height="1209" fetchpriority="high"></div>
+  <div class="gallery">
+    <div class="main-img"><img id="pImg" src="/images/hero.jpg" alt="" width="1200" height="1200" fetchpriority="high"><span class="img-note" id="imgNote"></span></div>
+    <div class="thumbs" id="thumbs" role="group" aria-label="Product images"></div>
+  </div>
   <div class="buy">
     <div>
       <p class="eyebrow" data-tagline data-need="tagline"></p>
-      <h1 id="pName">4-Strip RGB LED Car Interior Lights</h1>
+      <h1 id="pName" style="margin-top:8px">NeonDrive Interior LED Kit</h1>
+      <p class="sub" id="pSub"></p>
     </div>
-    <div class="price" id="pPrice"></div>
-    <p class="short" id="pShort"></p>
-    <div class="field" id="variantField"><span class="label" id="optLabel">Option</span><div class="variants" id="variants" role="group" aria-labelledby="optLabel"></div></div>
-    <div class="field"><label for="qty">Quantity</label>
-      <div class="qty"><button type="button" id="qMinus" aria-label="Decrease quantity">&minus;</button><input id="qty" type="number" min="1" max="10" value="1" inputmode="numeric"><button type="button" id="qPlus" aria-label="Increase quantity">+</button></div>
+    <div class="chips" id="chips"></div>
+    <div id="variantField">
+      <div class="step-label"><b>1.</b>Choose your bundle</div>
+      <div class="bundles" id="variants" role="group" aria-label="Bundle"></div>
     </div>
-    <div class="actions"><button class="btn" id="addBtn" type="button">Add to cart</button><button class="btn primary" id="buyBtn" type="button">Buy now</button></div>
-    <p class="msg" id="msg" role="alert"></p>
-    <p class="fine">Secure checkout by Stripe. Pay with card, Apple&nbsp;Pay or Google&nbsp;Pay where available.</p>
-    <div class="details">
-      <h2 class="eyebrow">Details</h2>
-      <div id="pDesc"></div>
-      <ul class="features" id="pFeatures"></ul>
+    <div>
+      <div class="step-label"><b>2.</b>Quantity &amp; checkout</div>
+      <div class="row-buy">
+        <div class="qty"><button type="button" id="qMinus" aria-label="Decrease quantity">&minus;</button><input id="qty" type="number" min="1" max="10" value="1" inputmode="numeric" aria-label="Quantity"><button type="button" id="qPlus" aria-label="Increase quantity">+</button></div>
+        <button class="btn primary" id="addBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><span id="addLabel">Add to cart</span></button>
+      </div>
+      <button class="btn ghost" id="buyBtn" type="button" style="width:100%;margin-top:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg> Buy now</button>
+      <p class="msg" id="msg" role="alert" style="margin-top:10px"></p>
     </div>
+    <ul class="trust">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg><span>Free US shipping</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Secure Stripe checkout</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg><span>Apple Pay &amp; Google Pay</span></li>
+    </ul>
+    <div class="desc" id="pDesc"></div>
   </div>
+</div></section>
+
+<section class="section" id="features" aria-labelledby="featH"><div class="wrap">
+  <p class="eyebrow">What you get</p><h2 id="featH">Built to <span class="grad">glow</span></h2>
+  <div class="feats" id="feats"></div>
+</div></section>
+
+<section class="section" id="how" aria-labelledby="howH"><div class="wrap">
+  <p class="eyebrow">How it works</p><h2 id="howH">Set up in <span class="grad">3 steps</span></h2>
+  <ol class="steps" id="steps"></ol>
+  <div class="showcase" style="margin-top:14px"><img src="/images/colors.jpg" alt="Four LED strips glowing red, pink, cyan and blue" loading="lazy" width="1200" height="1200"><img src="/images/app.jpg" alt="Phone app with color wheel" loading="lazy" width="1200" height="1200"></div>
 </div></section>
 
 <section class="section" id="shipping" aria-labelledby="shipH"><div class="wrap">
@@ -55,7 +79,6 @@
     <div class="card"><h3>Shipping</h3><p id="shipText"></p></div>
     <div class="card" data-need="returnsPolicy"><h3>Returns</h3><p id="returnText"></p></div>
   </div>
-  <p class="fine" style="margin-top:16px"><a href="/shipping-returns.html">Full shipping &amp; returns policy</a></p>
 </div></section>
 
 <section class="section faq" id="faq" data-need="faq" aria-labelledby="faqH"><div class="wrap">
@@ -65,12 +88,17 @@
 
 <section class="section" id="contact" data-need="contactEmail" aria-labelledby="contactH"><div class="wrap">
   <p class="eyebrow">Get in touch</p><h2 id="contactH">Contact</h2>
-  <p>Questions about an order or the product? Email us and include your order number if you have one.</p>
-  <p><a class="contact-email" data-email href="#"></a></p>
+  <p>Questions about an order? Email us with your order number.</p>
+  <p><a class="contact-email grad" data-email href="#"></a></p>
 </div></section>
+
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div class="t"><b>NeonDrive Interior LED Kit</b><span id="stickyPrice"></span></div>
+  <button class="btn primary" id="stickyAdd" type="button" tabindex="-1">Add to cart</button>
+</div>
 </main>
 <footer class="foot"><div class="wrap">
-  <div>&copy; <span data-year></span> <span data-brand>LED Interior Kit</span></div>
+  <div>&copy; <span data-year></span> NeonDrive</div>
   <nav aria-label="Footer"><a href="/shipping-returns.html">Shipping &amp; returns</a><a href="/privacy.html">Privacy policy</a><a href="/terms.html">Terms</a><a href="/#contact" data-need="contactEmail">Contact</a></nav>
 </div></footer>
 <div class="scrim" id="scrim" hidden></div>
@@ -78,7 +106,7 @@
   <header><h2>Your cart</h2><button class="x" type="button" aria-label="Close cart">&times;</button></header>
   <div class="lines" id="lines"></div>
   <footer>
-    <div class="sub"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+    <div class="subt"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
     <p class="fine">Free US shipping. Taxes, if any, are shown at checkout.</p>
     <button class="btn primary" id="cartCheckout" type="button">Checkout</button>
     <p class="msg" id="cartMsg" role="alert"></p>
