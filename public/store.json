@@ -2,7 +2,7 @@
   "_readme": "EDIT THIS FILE to change your store. Prices are in cents (2999 = $29.99). Leave a field empty (\"\") to hide it on the site.",
   "brand": "NeonDrive",
   "tagline": "Light up every drive",
-  "contactEmail": "",
+  "contactEmail": "support.website.issue@gmail.com",
   "currency": "usd",
   "shipping": {
     "countries": [
@@ -10,9 +10,9 @@
     ],
     "label": "Free shipping",
     "priceCents": 0,
-    "note": ""
+    "note": "Orders ship in 1\u20133 business days and usually arrive in 5\u201310 business days."
   },
-  "returnsPolicy": "",
+  "returnsPolicy": "30-day returns on unused items in original packaging. Buyer pays return shipping. If your kit arrives damaged or defective, email us within 30 days and we will make it right at no cost to you.",
   "product": {
     "id": "led-kit",
     "name": "NeonDrive Interior LED Kit",
