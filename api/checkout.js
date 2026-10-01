@@ -53,6 +53,10 @@ module.exports = async (req, res) => {
     return res.status(200).json({ url: session.url });
   } catch (e) {
     console.error(e);
-    return res.status(e.status && e.status < 500 ? 400 : 500).json({ error: 'Checkout could not start. Please try again.' });
+    // Short, safe hints so problems are easy to spot (never includes the key itself).
+    let hint = 'Checkout could not start. Please try again.';
+    if (/STRIPE_SECRET_KEY is not set/.test(e.message)) hint = 'Payments are not set up yet (Stripe key missing on the server).';
+    else if (e.status === 401) hint = 'Payments are not set up correctly (Stripe key was rejected).';
+    return res.status(e.status && e.status < 500 ? 400 : 500).json({ error: hint });
   }
 };
